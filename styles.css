@@ -12,8 +12,8 @@ a{color:inherit;text-decoration:none}
 header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(7,10,15,.92),rgba(7,10,15,.6));backdrop-filter:blur(10px);border-bottom:1px solid #131B29}
 nav{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0;gap:1rem;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:.6rem;font-weight:800;font-size:1.35rem;letter-spacing:.3px}
-.brand-logo{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:center;border:1px solid rgba(167,243,208,.65)}
-.brand-badge{width:28px;height:28px;border-radius:8px;background:conic-gradient(from 180deg, var(--primary), var(--secondary));display:grid;place-items:center;color:#052e16;font-weight:900}
+.brand-logo{width:34px;height:34px;border-radius:75%;object-fit:cover;object-position:center;border:1px solid rgba(167,243,208,.65)}
+.brand-badge{width:28px;height:28px;border-radius:16px;background:conic-gradient(from 180deg, var(--primary), var(--secondary));display:grid;place-items:center;color:#052e16;font-weight:900}
 .nav-links{display:flex;gap:1.1rem;list-style:none;padding:0;margin:0;flex-wrap:wrap}
 .nav-links a{color:var(--muted);transition:.2s}
 .nav-links a:hover,.nav-links a.active{color:var(--text)}
