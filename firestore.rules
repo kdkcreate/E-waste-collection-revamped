@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /estimates/{docId} {
+      allow create: if request.auth != null && isValidEstimate(request.resource.data);
+      allow read, update, delete: if false;
+    }
+    match /orders/{docId} {
+      allow create: if request.auth != null && isValidOrder(request.resource.data);
+      allow read, update, delete: if false;
+    }
+    function isValidEstimate(data) {
+      return data.keys().hasOnly(['deviceType','damageLevel','usageMonths','damageDescription','createdAt'])
+        && data.deviceType in ['smartphone','laptop','tablet','desktop','smartwatch','console','other']
+        && data.damageLevel in ['minor','moderate','severe','nonworking']
+        && data.usageMonths is int && data.usageMonths >= 0 && data.usageMonths <= 180
+        && data.damageDescription is string && data.damageDescription.size() <= 500
+        && data.createdAt is string;
+    }
+    function isValidOrder(data) {
+      return data.keys().hasOnly(['estimate','customer']) && isValidEstimate(data.estimate)
+        && data.customer.customerName is string && data.customer.customerName.size() <= 80
+        && data.customer.customerEmail is string && data.customer.customerEmail.matches('^[^@\\s]+@[^@\\s]+[.][^@\\s]+$')
+        && data.customer.customerPhone is string && data.customer.customerPhone.size() <= 30
+        && data.customer.customerCity is string && data.customer.customerCity.size() <= 80;
+    }
+  }
+}
