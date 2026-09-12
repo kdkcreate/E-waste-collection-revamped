@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Estimate the return value and positive impact of giving your device a second life with NOVARA.">
+  <title>E-Calculator | NOVARA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header><div class="container"><nav>
+    <a class="brand" href="main web.html"><img class="brand-logo" src="novara-logo.png" alt="NOVARA logo">NOVARA</a>
+    <ul class="nav-links"><li><a href="main web.html">Home</a></li><li><a class="active" href="calculator.html">E-Calculator</a></li><li><a href="facts.html">Facts</a></li><li><a href="health.html">Health</a></li><li><a href="india-kerala.html">India &amp; Kerala</a></li><li><a href="team.html">Our Team</a></li></ul>
+  </nav></div></header>
+
+  <main>
+    <section class="hero"><div class="container hero-grid">
+      <div>
+        <span class="badge">NOVARA E-Calculator</span>
+        <h1 class="kinetic"><span>See the value</span> <span>in your</span> <span>old device.</span></h1>
+        <p class="sub">Get an instant, indicative estimate of value, repair potential and the impact of extending a device’s life.</p>
+      </div>
+      <div class="hero-visual logo-visual"><div class="orb one"></div><div class="orb two"></div><img src="novara-logo.png" alt="NOVARA: A call to action"></div>
+    </div></section>
+
+    <section class="container calculator-shell reveal">
+      <div class="calculator-intro"><h2 class="section-title">Device estimate</h2><p class="section-sub">Enter the device type, its problem or damage, and its usage duration. The estimate is a guide only; NOVARA confirms a final value after inspection.</p></div>
+      <div class="glass">
+        <form id="calculator-form" class="calculator-form">
+          <div class="form-grid">
+            <div class="field"><label for="device-type">Device type</label><select id="device-type" name="deviceType" required><option value="">Choose a device</option><option value="smartphone">Smartphone</option><option value="laptop">Laptop</option><option value="tablet">Tablet</option><option value="desktop">Desktop computer</option><option value="smartwatch">Smartwatch</option><option value="console">Gaming console</option><option value="other">Other electronic device</option></select></div>
+            <div class="field"><label for="usage-months">How long have you used it?</label><input id="usage-months" name="usageMonths" type="number" min="0" max="180" step="1" placeholder="For example, 24" required><span class="note">Enter months of use.</span></div>
+            <div class="field"><label for="damage-level">Condition / damage level</label><select id="damage-level" name="damageLevel" required><option value="">Choose condition</option><option value="minor">Minor wear or a small repair</option><option value="moderate">Moderate damage or performance issues</option><option value="severe">Severe damage / major repair needed</option><option value="nonworking">Does not switch on</option></select></div>
+            <div class="field"><label for="model-name">Brand or model <span class="note">optional</span></label><input id="model-name" name="modelName" type="text" maxlength="80" placeholder="For example, Galaxy A54"></div>
+            <div class="field field-full"><label for="damage-description">What is the problem or damage?</label><textarea id="damage-description" name="damageDescription" maxlength="500" placeholder="For example, screen is cracked and battery drains quickly" required></textarea></div>
+          </div>
+          <label class="check-field"><input id="estimate-consent" name="estimateConsent" type="checkbox"><span>I agree that NOVARA may securely store this estimate request to improve the quote and contact me about it. My estimate still works if I do not agree.</span></label>
+          <button class="btn" type="submit">Calculate my estimate →</button>
+          <p id="calculator-status" class="form-status" role="status" aria-live="polite"></p>
+          <p class="privacy-note">No calculator details are stored unless you give permission. Stored submissions are encrypted in transit and at rest, and cannot be read back from this website.</p>
+        </form>
+      </div>
+
+      <section id="estimate-result" class="result-box is-hidden" aria-live="polite">
+        <span class="badge">Your indicative estimate</span>
+        <h2 class="section-title">Your device could still make an impact.</h2>
+        <p id="result-summary" class="section-sub"></p>
+        <div class="result-grid"><div class="result-item"><span>Estimated return value</span><strong id="trade-value">—</strong></div><div class="result-item"><span>Possible repair value</span><strong id="repair-value">—</strong></div><div class="result-item"><span>Material recovery value</span><strong id="recovery-value">—</strong></div></div>
+        <div class="impact-grid"><article class="impact-card"><h3>Environmental impact</h3><p><strong id="carbon-impact">—</strong> estimated CO₂e avoided by keeping materials in circulation.</p></article><article class="impact-card"><h3>Social impact</h3><p id="social-impact">—</p></article><article class="impact-card"><h3>Sustainable impact</h3><p><strong id="reuse-impact">—</strong> chance of reuse or responsible recovery.</p></article></div>
+        <div class="divider"></div>
+        <div id="order-panel" class="order-form-wrap is-hidden"><span class="secure-pill">🔒 Encrypted submission</span><h3 class="small-heading">Request a final quote or pickup</h3><p class="section-sub">Share your details only if you would like NOVARA to follow up. The final value is confirmed after inspection.</p><form id="order-form" class="order-form"><div class="form-grid"><div class="field"><label for="customer-name">Your name</label><input id="customer-name" name="customerName" type="text" maxlength="80" required></div><div class="field"><label for="customer-email">Email address</label><input id="customer-email" name="customerEmail" type="email" maxlength="120" required></div><div class="field"><label for="customer-phone">Phone number</label><input id="customer-phone" name="customerPhone" type="tel" maxlength="30" required></div><div class="field"><label for="customer-city">City / area</label><input id="customer-city" name="customerCity" type="text" maxlength="80" required></div></div><label class="check-field"><input id="order-consent" type="checkbox" required><span>I agree to NOVARA securely storing my quote and order information so the team can contact me.</span></label><button class="btn" type="submit">Request a final quote →</button><p id="order-status" class="form-status" role="status" aria-live="polite"></p></form></div>
+        <p id="storage-message" class="storage-message"></p>
+      </section>
+    </section>
+  </main>
+  <footer><div class="container">© 2026 NOVARA · A call to action</div></footer>
+  <script type="module" src="script.js"></script>
+</body>
+</html>

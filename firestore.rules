@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Anyone can submit an estimate (the calculator form), but nobody —
+    // not even a visitor reading your site's JS — can list or read other
+    // people's submissions back out. Only your team, logged into the
+    // Firebase console, can see this data.
+    match /estimates/{docId} {
+      allow create: if isValidEstimate(request.resource.data);
+      allow read, update, delete: if false;
+    }
+
+    // Same idea for the final quote/order requests, which also include
+    // the customer's contact details.
+    match /orders/{docId} {
+      allow create: if isValidOrder(request.resource.data);
+      allow read, update, delete: if false;
+    }
+
+    function isValidEstimate(data) {
+      return data.deviceType in ['smartphone','laptop','tablet','desktop','smartwatch','console','other']
+        && data.damageLevel in ['minor','moderate','severe','nonworking']
+        && data.usageMonths is int
+        && data.usageMonths >= 0 && data.usageMonths <= 180
+        && data.damageDescription is string && data.damageDescription.size() <= 500
+        && data.createdAt is string;
+    }
+
+    function isValidOrder(data) {
+      return isValidEstimate(data.estimate)
+        && data.customer.customerName is string && data.customer.customerName.size() <= 80
+        && data.customer.customerEmail is string
+        && data.customer.customerEmail.matches('^[^@\\s]+@[^@\\s]+[.][^@\\s]+$')
+        && data.customer.customerPhone is string && data.customer.customerPhone.size() <= 30
+        && data.customer.customerCity is string && data.customer.customerCity.size() <= 80;
+    }
+  }
+}
