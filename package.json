@@ -1,8 +1,0 @@
-{
-  "name": "novara-e-waste",
-  "version": "1.0.0",
-  "private": true,
-  "description": "NOVARA e-calculator and encrypted submission service.",
-  "engines": { "node": ">=22.5.0" },
-  "scripts": { "start": "node server.js" }
-}
